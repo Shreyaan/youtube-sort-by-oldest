@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Video } from "../../..";
+import { Video } from "../../../index.d";
 import axios, { AxiosResponse } from "axios";
 import { key } from "../utils/index.js";
 
