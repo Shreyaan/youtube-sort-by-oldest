@@ -9,6 +9,8 @@ import { database } from "../index.js";
 import { get, ref, set } from "firebase/database";
 import { getDatabase } from "firebase/database";
 
+let limitOfvideos = 3000;
+
 const myCache = new NodeCache();
 
 type apiRes =
@@ -114,7 +116,7 @@ export async function getSortedVideos(req: Request, res: Response) {
 
     if (
       videosData?.data.nextPageToken !== undefined &&
-      videosArray.length < 3000
+      videosArray.length < limitOfvideos
     ) {
       videosArrayLen = videosArray.length;
 

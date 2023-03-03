@@ -3,6 +3,7 @@ import { key } from "../utils/index.js";
 import NodeCache from "node-cache";
 import { database } from "../index.js";
 import { get, ref, set } from "firebase/database";
+let limitOfvideos = 3000;
 const myCache = new NodeCache();
 export async function getSortedVideos(req, res) {
     const { id } = req.params;
@@ -94,7 +95,7 @@ export async function getSortedVideos(req, res) {
             return [];
         }
         if (videosData?.data.nextPageToken !== undefined &&
-            videosArray.length < 3000) {
+            videosArray.length < limitOfvideos) {
             videosArrayLen = videosArray.length;
             let data = await getVideos(videosData.data.nextPageToken, channelId);
             videosArrayLen = videosArray.length;
