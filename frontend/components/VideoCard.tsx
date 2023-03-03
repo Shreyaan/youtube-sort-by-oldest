@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Video } from "..";
+import { Video } from "../..";
 
 export function VideoCard({ video }: { video: Video }) {
   const isoStr1 = video.snippet.publishedAt;

@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
-import { getSortedVideos, getSortedVideosNOLIMIT } from "./controllers/getSortedVideos.js";
+import { getSortedVideos, getSortedVideosNOLIMIT, } from "./controllers/getSortedVideos.js";
 import { getChannelIdFromVideoUrl } from "./controllers/getChannelIdFromVideoUrl.js";
 import { getChannelIdfromChannelUrl } from "./controllers/getChannelId.js";
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {

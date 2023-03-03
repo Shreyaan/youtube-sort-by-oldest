@@ -1,7 +1,7 @@
 import React, { use, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import { Router, useRouter } from "next/router";
-import { Video } from "../..";
+import { Video } from "../../..";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { VideoCard } from "../../components/VideoCard";
