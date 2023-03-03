@@ -2,15 +2,15 @@
 module.exports = {
   reactStrictMode: false,
   i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
+    locales: ["en"],
+    defaultLocale: "en",
   },
   async rewrites() {
     return [
       {
-        source: '/videos',
-        destination: '/videos/[...channelId]',
+        source: "/videos",
+        destination: "/videos/[...channelId]",
       },
     ];
   },
-}
+};

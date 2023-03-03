@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         {/* Primary Meta Tags */}
-       
+
         <meta name="title" content="Youtube sort by oldest videos" />
         <meta
           name="description"
@@ -20,13 +20,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="language" content="English" />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yt-frontend-jet.vercel.app/show.jpg" />
+        <meta
+          property="og:url"
+          content="https://yt-frontend-jet.vercel.app/show.jpg"
+        />
         <meta property="og:title" content="Youtube sort by oldest videos" />
         <meta
           property="og:description"
           content="Youtube recently took away the sort by oldest option on channels so this web app brings it back"
         />
-        <meta property="og:image" content="https://yt-frontend-jet.vercel.app/show.jpg" />
+        <meta
+          property="og:image"
+          content="https://yt-frontend-jet.vercel.app/show.jpg"
+        />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -42,10 +48,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           property="twitter:description"
           content="Youtube recently took away the sort by oldest option on channels so this web app brings it back"
         />
-        <meta property="twitter:image" content="https://yt-frontend-jet.vercel.app/show.jpg" />
+        <meta
+          property="twitter:image"
+          content="https://yt-frontend-jet.vercel.app/show.jpg"
+        />
       </Head>
-      
-        <GoogleAnalytics gaMeasurementId="G-1C40RL1VLH" />
+
+      <GoogleAnalytics gaMeasurementId="G-1C40RL1VLH" />
       <main>
         <ToastContainer
           position="top-right"

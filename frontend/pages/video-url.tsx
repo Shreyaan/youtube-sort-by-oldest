@@ -28,12 +28,14 @@ function VideoUrl() {
     axios(config)
       .then(function (response) {
         setLoading(false);
-      
-       location.href = `/videos/${response.data.channelId}?pageNumber=1&itemsPerpage=50`;
+
+        location.href = `/videos/${response.data.channelId}?pageNumber=1&itemsPerpage=50`;
       })
       .catch(function (error) {
-        if(error.response.status === 403){
-          toast.error("Api limit exceeded please try again after 24 hours or try using channel url");
+        if (error.response.status === 403) {
+          toast.error(
+            "Api limit exceeded please try again after 24 hours or try using channel url"
+          );
           setLoading(false);
           return;
         }

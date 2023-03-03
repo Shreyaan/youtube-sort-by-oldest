@@ -43,7 +43,7 @@ async function getChannelIdFromUrl(url: string): Promise<string> {
   }
 
   console.log(videoId);
-let selectedKey = key();
+  let selectedKey = key();
   var config = {
     method: "get",
     url: `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${selectedKey}`,
@@ -61,8 +61,7 @@ let selectedKey = key();
     .catch(function (error) {
       console.log(error.response?.data.error.code);
       console.log(error.response?.data.error.message);
-      
-      
+
       if (error.response?.data.error.code === 403) {
         return "api key quota exceeded";
       }

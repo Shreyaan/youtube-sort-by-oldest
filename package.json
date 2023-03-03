@@ -1,0 +1,12 @@
+{
+  "name": "youtube-sort-by-oldest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Shreyaan/youtube-sort-by-oldest.git",
+  "author": "Shreyaan",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "prettier": "^2.8.4"
+  }
+}

@@ -51,7 +51,9 @@ export function VideoCard({ video }: { video: Video }) {
         />
       </figure>
       <div className="card-body max-w-[95vw] items-center md:items-start overflow-hidden ">
-        <h2 className="card-title max-w-[95vw] break-all">{video.snippet.title}</h2>
+        <h2 className="card-title max-w-[95vw] break-all">
+          {video.snippet.title}
+        </h2>
         <p className="max-w-[95vw] break-all">
           {video.snippet.description.substring(0, 200)}
         </p>{" "}

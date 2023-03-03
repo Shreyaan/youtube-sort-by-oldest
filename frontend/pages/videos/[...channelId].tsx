@@ -16,7 +16,7 @@ function videos({ videosArray }: { videosArray: Video[] }) {
 
   let { pageNumber, itemsPerpage } = router.query;
 
-// validate page number and items per page
+  // validate page number and items per page
   useEffect(() => {
     //if page number > 100 than show error
     if (pageNumber != undefined && typeof pageNumber === "string") {
@@ -38,14 +38,13 @@ function videos({ videosArray }: { videosArray: Video[] }) {
         router.push(`/videos/${channelId}?pageNumber=1&itemsPerpage=50`);
       }
     }
-
   }, [pageNumber, itemsPerpage]);
 
   const [videosOnPage, setVideosOnPage] = React.useState<number>(50);
   let pagenumOnStart = 1;
   const [page, setPage] = React.useState<number>(pagenumOnStart);
 
-  // set number of videos on page 
+  // set number of videos on page
   useEffect(() => {
     if (itemsPerpage != undefined && typeof itemsPerpage === "string") {
       let itemsPerPageTemp = parseInt(itemsPerpage as string);
@@ -72,24 +71,22 @@ function videos({ videosArray }: { videosArray: Video[] }) {
   );
 
   //calculate total pages
-  let totalPages = (Math.ceil(videos.length / videosOnPage));
+  let totalPages = Math.ceil(videos.length / videosOnPage);
   if (totalPages === 0) {
     totalPages = 1;
   }
 
-  
   // if page number > total pages than show error
-useEffect(() => {
- if(videos.length > 0){
-  if (pageNumber != undefined && typeof pageNumber === "string") {
-    if (parseInt(pageNumber as string) > totalPages) {
-      toast.error("Page number can't be greater than total pages");
-      router.push(`/videos/${channelId}?pageNumber=1&itemsPerpage=50`);
+  useEffect(() => {
+    if (videos.length > 0) {
+      if (pageNumber != undefined && typeof pageNumber === "string") {
+        if (parseInt(pageNumber as string) > totalPages) {
+          toast.error("Page number can't be greater than total pages");
+          router.push(`/videos/${channelId}?pageNumber=1&itemsPerpage=50`);
+        }
+      }
     }
-  }
- }
   }, [pageNumber, totalPages, videos.length]);
-
 
   React.useMemo(() => {
     if (typeof videosArray === "undefined" || videosArray?.length === 0) {
@@ -155,7 +152,11 @@ useEffect(() => {
               Number of videos - {videos.length}{" "}
               {videos?.length > 1 && (
                 <span>
-                  | Showing {-videosOnPage + videosOnPage * page + 1} to {videosOnPage * page > videos.length ? videos.length : videosOnPage * page} <br /> Total pages - {totalPages}
+                  | Showing {-videosOnPage + videosOnPage * page + 1} to{" "}
+                  {videosOnPage * page > videos.length
+                    ? videos.length
+                    : videosOnPage * page}{" "}
+                  <br /> Total pages - {totalPages}
                 </span>
               )}
             </p>
@@ -248,8 +249,8 @@ const channels = [
   ["pewdiepie", "UC-lHJZR3Gqxm24_Vd_AJ5Yw"],
   ["ltt", "UCXuqSBlHAE6Xw-yeJA0Tunw"],
   ["some ordinary games", "UCtMVHI3AJD4Qk4hcbZnI9ZQ"],
-  ['muse asia', 'UCGbshtvS9t-8CW11W7TooQg'],
-  ["penguinz0", 'UCq6VFHwMzcMXbuKyG7SQYIg']
+  ["muse asia", "UCGbshtvS9t-8CW11W7TooQg"],
+  ["penguinz0", "UCq6VFHwMzcMXbuKyG7SQYIg"],
 ];
 
 export async function getStaticPaths() {
