@@ -94,7 +94,7 @@ export async function getSortedVideos(req: Request, res: Response) {
         return {
           snippet: {
             title: video.snippet.title,
-            description: video.snippet.description.slice(0, 200),
+            description: video.snippet.description.slice(0, 197) +"..." ,
             publishedAt: video.snippet.publishedAt,
             thumbnails: video.snippet.thumbnails,
           },
