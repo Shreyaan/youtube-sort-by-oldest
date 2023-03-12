@@ -55,7 +55,7 @@ export function VideoCard({ video }: { video: Video }) {
           {video.snippet.title}
         </h2>
         <p className="max-w-[95vw] break-all">
-          {video.snippet.description.substring(0, 200)}
+          {video.snippet.description.substring(0, 200)}...
         </p>{" "}
         <br />
         <p> Published at - {date.toDateString()}</p>
