@@ -18,7 +18,12 @@ const checkUrl = (url: string | string[]) =>
 
 const channelIdHandler = async (url: string) => {
   if (checkUrl(url)) {
-    const ytChannelPageResponse = await axiosInstance.get(url);
+    let ytChannelPageResponse;
+    try {
+      ytChannelPageResponse = await axiosInstance.get(url);
+    } catch (err) {
+      return "";
+    }
     const $ = cheerio.load(ytChannelPageResponse.data);
 
     const id = $('meta[itemprop="channelId"]').attr("content");
