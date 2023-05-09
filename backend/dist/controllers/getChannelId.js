@@ -11,7 +11,13 @@ const axiosInstance = axios.create({
 const checkUrl = (url) => url.indexOf("youtube.com") !== -1 || url.indexOf("youtu.be") !== -1;
 const channelIdHandler = async (url) => {
     if (checkUrl(url)) {
-        const ytChannelPageResponse = await axiosInstance.get(url);
+        let ytChannelPageResponse;
+        try {
+            ytChannelPageResponse = await axiosInstance.get(url);
+        }
+        catch (err) {
+            return "";
+        }
         const $ = cheerio.load(ytChannelPageResponse.data);
         const id = $('meta[itemprop="channelId"]').attr("content");
         if (id) {
