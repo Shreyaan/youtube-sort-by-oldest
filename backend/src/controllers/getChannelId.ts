@@ -16,26 +16,27 @@ const axiosInstance = axios.create({
 const checkUrl = (url: string | string[]) =>
   url.indexOf("youtube.com") !== -1 || url.indexOf("youtu.be") !== -1;
 
-const channelIdHandler = async (url: string) => {
-  if (checkUrl(url)) {
-    let ytChannelPageResponse;
-    try {
-      ytChannelPageResponse = await axiosInstance.get(url);
-    } catch (err) {
-      return "";
+  const channelIdHandler = async (url: string) => {
+    if (checkUrl(url)) {
+      try {
+        const ytChannelPageResponse = await axiosInstance.get(url);
+        const channelIdMatch = ytChannelPageResponse.data.match(
+          /"channelId":"([a-zA-Z0-9_-]+)"/
+        );
+        if (channelIdMatch) {
+          return channelIdMatch[1];
+        } else {
+          console.error("Channel ID not found in the page HTML.");
+        }
+      } catch (err) {
+        console.error("Error fetching YouTube channel page:", err);
+      }
+    } else {
+      console.error("Invalid URL.");
     }
-    const $ = cheerio.load(ytChannelPageResponse.data);
-
-    const id = $('meta[itemprop="channelId"]').attr("content");
-    if (id) {
-      return id;
-    }
-  } else {
+  
     return "";
-  }
-
-  return "";
-};
+  };
 
 export async function getChannelIdfromChannelUrl(req: Request, res: Response) {
   let { url } = req.body;

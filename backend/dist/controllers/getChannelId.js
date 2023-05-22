@@ -1,5 +1,4 @@
 import axios from "axios";
-import cheerio from "cheerio";
 const axiosInstance = axios.create({
     headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
@@ -11,21 +10,22 @@ const axiosInstance = axios.create({
 const checkUrl = (url) => url.indexOf("youtube.com") !== -1 || url.indexOf("youtu.be") !== -1;
 const channelIdHandler = async (url) => {
     if (checkUrl(url)) {
-        let ytChannelPageResponse;
         try {
-            ytChannelPageResponse = await axiosInstance.get(url);
+            const ytChannelPageResponse = await axiosInstance.get(url);
+            const channelIdMatch = ytChannelPageResponse.data.match(/"channelId":"([a-zA-Z0-9_-]+)"/);
+            if (channelIdMatch) {
+                return channelIdMatch[1];
+            }
+            else {
+                console.error("Channel ID not found in the page HTML.");
+            }
         }
         catch (err) {
-            return "";
-        }
-        const $ = cheerio.load(ytChannelPageResponse.data);
-        const id = $('meta[itemprop="channelId"]').attr("content");
-        if (id) {
-            return id;
+            console.error("Error fetching YouTube channel page:", err);
         }
     }
     else {
-        return "";
+        console.error("Invalid URL.");
     }
     return "";
 };
